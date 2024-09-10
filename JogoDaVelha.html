@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da Velha</title>
+    <link rel="stylesheet" href="css/estilosVelha.css">
+</head>
+<body>
+    <header>
+        <button onclick="MostrarDados()" type="button" id="modo1"><img src="img/usuario.png" class="user" type="button" id="modo"></button>
+     </header>
+     <div class="jogo">
+        <h1>Jogo da Velha</h1>
+        <table id="board">
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+        <button class="reset" onclick="resetBoard()">Resetar</button>
+     </div>
+    
+    <script src="Js/scriptVelha.js"></script>
+    <script src="Js/script.js"></script>
+</body>
+</html>
