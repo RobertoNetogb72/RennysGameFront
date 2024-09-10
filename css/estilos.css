@@ -1,0 +1,179 @@
+body{
+    background-color: black;
+}
+header {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 7px;
+}
+button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    float: inline-end;
+}
+main{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.escolha{
+    color: #5ee06b;
+}
+.cadastro{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+}
+.areaJogo{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.bolhasEsq {
+    margin-left: 63px;
+    width: 26vh;
+}
+.bolhasEsqIndex {
+    margin-top: 50px;
+    margin-left: 63px;
+    width: 26vh;
+}
+.bolhasDirIndex{
+    margin-top: 50px;
+    margin-right: 63px;
+    width: 26vh;
+}
+.bolhasDir {
+    margin-right: 63px;
+    width: 26vh;
+}
+.campoCad{
+    display: flex;
+    flex-direction: column;
+    margin-top: 120px;
+    background-color: #565656;
+    border-radius: 8px;
+}
+form{
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    color: white;
+}
+
+input{
+    font-size: 20px;
+    color: white;
+    width: 53vh;
+    background-color: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: white;
+}
+label{
+    font-size: 22px;
+    padding: 15px;
+    margin-left: -11px;
+}
+.login{
+    margin: 0 auto;
+    margin-top: 25px;
+    cursor: pointer;
+    font-size: 20px;
+    background-color: #46EE57;
+    color: black;
+    width: 52vh;
+    height: 5vh;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3)
+}
+.login:hover{
+    background-color: #37ab42;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.login:active{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  transform: translateX(2px) translateY(-2px);
+}
+.logo{
+    margin: 0 auto;
+    width: 80%;
+}
+.logo2{
+    margin: 0 auto;
+    margin-bottom: 100px;
+    width: 80%;
+}
+
+.user{
+    width: 68px;
+    height: 68px;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+}
+#puzzle-container {
+    margin-bottom: 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 150px);
+    grid-template-rows: repeat(3, 150px);
+    gap: 5px;
+    perspective: 1000px; /* Adiciona perspectiva para efeito 3D */
+}
+ 
+/* Basic tile styling */
+.tile {
+    width: 150px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 34px;
+    font-weight: bold;
+    color: #000000;
+    background-color: #5FFF19;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3); /* Sombra para efeito 3D */
+}
+ 
+.tile:before {
+    content: '';
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    border-radius: 8px;
+    transform: rotateY(45deg);
+    pointer-events: none;
+}
+ 
+/* Empty tile styling */
+.empty {
+    background-color: transparent; /* Mesma cor do fundo para o vazio */
+    cursor: default;
+    box-shadow: none;
+}
+ 
+/* Hover effect for tiles */
+.tile:not(.empty):hover {
+    transform: scale(1.1) rotateX(10deg); /* Aumenta o efeito 3D ao passar o mouse */
+    background-color: #056e13;
+    color: white;
+}
+ 
+/* Tile edges to look more 3D */
+.tile {
+    border: 1px solid #00ff00; /* Borda verde */
+}
+
