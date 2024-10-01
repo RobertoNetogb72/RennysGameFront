@@ -99,6 +99,10 @@ function redirecionarJogo() {
     console.log("Teste")
     window.location.href = ("http://127.0.0.1:5500/indexJogo1.html");
 }
+function redirecionarLobby() {
+    console.log("Teste")
+    window.location.href = ("http://127.0.0.1:5500/indexJogo1.html");
+}
 function redirecionarJogoSlid() {
     window.location.href = ("http://127.0.0.1:5500/Sliding.html");
 }
@@ -458,10 +462,6 @@ async function MostrarDados() {
         //html.innerHTML = `
         //<p>${data.qntPartida}</p>
       //  `
-        
-
-        AddWin(id, cadastroId, qntPartida, qntVitoria, qntDerrota, qntEmpate)
-
     } catch (error) {
 
     }

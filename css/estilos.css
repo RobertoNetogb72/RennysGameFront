@@ -26,9 +26,10 @@ main{
     width: 30%;
     display: flex;
     flex-direction: column;
+
 }
 .areaJogo{
-    width: 30%;
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +56,7 @@ main{
 .campoCad{
     display: flex;
     flex-direction: column;
-    margin-top: 120px;
+    margin-top: 40px;
     background-color: #565656;
     border-radius: 8px;
 }
@@ -103,9 +104,52 @@ label{
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
   transform: translateX(2px) translateY(-2px);
 }
+
+.entrarJogo{
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: #46EE57;
+    color: black;
+    width: 10vh;
+    height: 5vh;
+    margin-right: 158px;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3)
+}
+.entrarJogo:hover{
+    background-color: #37ab42;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.entrarJogo:active{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  transform: translateX(2px) translateY(-2px);
+}
+
+.ReiniciarJogo{
+    margin: 0 auto;
+    font-size: 20px;
+    background-color: #46EE57;
+    color: black;
+    width: 10vh;
+    height: 5vh;
+    border: none;
+    border-radius: 10px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3)
+}
+.ReiniciarJogo:hover{
+    background-color: #37ab42;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+}
+
+.ReiniciarJogo:active{
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.5);
+  transform: translateX(2px) translateY(-2px);
+}
 .logo{
     margin: 0 auto;
-    width: 80%;
+    margin-top: 19px;
 }
 .logo2{
     margin: 0 auto;
@@ -116,6 +160,21 @@ label{
 .user{
     width: 68px;
     height: 68px;
+}
+.card{
+    position: relative;
+    display: flex;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 1px solid rgba(0, 0, 0, .125);
+    border-radius: .25rem;
+    width: 100%;
+}
+.fotoescolha{
+    height: 200px;
+    margin-left: 28px;
 }
 
 a {
@@ -177,3 +236,77 @@ a {
     border: 1px solid #00ff00; /* Borda verde */
 }
 
+.btn-outline-light {
+    color: #55ff74;
+    border-color: rgb(0, 255, 4);
+}
+.btn-outline-light:hover {
+    color: #ffffff;
+    border-color: #008a2e;
+    background-color: #008a2e;
+}
+.game-container {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 420px;
+    height: 470px; /* Adjusted to accommodate the score display */
+    background-color: #fff;
+    border: 2px solid #000;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+ 
+h1{
+    text-align: center;
+    color: #fff;
+}
+ 
+canvas {
+    align-items: center;
+    display: block;
+    background-color: #00c217;
+}
+ 
+ 
+.button2{
+    color: #fff;
+    text-align: center;
+    height: 40px;
+    width: 70px;
+    background-color: green;
+    border-radius: 15px;
+    cursor: pointer;
+}
+.button2:hover{
+    background-color: rgb(0, 93, 0);
+}
+ 
+#score {
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+ 
+.logo4{
+    margin: 0 auto;
+    width: 30%;
+}
+.voltar{
+    color: #000000;
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    background-color: #46EE57;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.voltar:hover{
+    background-color: rgb(0, 93, 0);
+    color: #fff;
+}
+.voltar:active{
+    transform: translateX(2px) translateY(-2px);
+}

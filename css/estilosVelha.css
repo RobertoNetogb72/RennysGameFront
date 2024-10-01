@@ -3,32 +3,41 @@ body {
     background-color: #282c34;
     margin: 0;
     padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     height: 100vh;
     color: #fff;
 }
 header {
     width: 100%;
     display: flex;
-    justify-content: end;
-    margin-bottom: 180px;
+    justify-content: space-between;
 }
 button{
     background-color: transparent;
     border: none;
     cursor: pointer;
-    float: inline-end;
+
+}
+main{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.areaJogo{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 .user{
     width: 68px;
     height: 68px;
 }
 .jogo{
-    margin-bottom: 200px;
     text-align: center;
+}
+.teste{
+    height: 600px;
 }
 .reset{
    margin-top: 50px;
@@ -66,12 +75,12 @@ button{
     gap: 4px;
     width: 300px; /* Ajuste para manter a proporção */
     height: 300px; /* Ajuste para manter a proporção */
-    
+   
 }
  
 #board td {
     background-color: #ffffff;
-    border: 2px solid #ffffff;
+    border: 2px solid #000000;
     color: black;
     width: 100px;
     height: 100px;
@@ -149,4 +158,40 @@ body:before {
  
 #reset-btn:hover {
     background-color: #c82333;
+}
+.user{
+    width: 68px;
+    height: 68px;
+    margin-left: 1840px;
+}
+.bolhasEsq {
+    display: flex;
+    margin-left: 20px;
+    width: 26vh;
+}
+.bolhasDir {
+    display: flex;
+    margin-right: 20px;
+    width: 26vh;
+}
+.logo{
+    margin: 0 auto;
+    width: 80%;
+}
+.voltar{
+    color: #000000;
+    text-align: center;
+    height: 50px;
+    width: 200px;
+    background-color: #46EE57;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 20px;
+}
+.voltar:hover{
+    background-color: rgb(0, 93, 0);
+    color: #fff;
+}
+.voltar:active{
+    transform: translateX(2px) translateY(-2px);
 }
