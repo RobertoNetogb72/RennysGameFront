@@ -13,23 +13,51 @@ function trocar() {
 
 }
 function mudarCorDeFundo() {
-
+ 
+    let score = document.getElementById("score");
+    let gamecontainer = document.getElementById("gamecontainer");
+    let gameCanvas = document.getElementById("gameCanvas");
+ 
     // Verifica a cor atual da div e alterna entre azul e vermelho
-
+ 
     if (minhaDiv.style.backgroundColor === "black") {
-
+ 
         minhaDiv.style.transition = "background-color 1s";
-
+ 
         minhaDiv.style.backgroundColor = "white";
-
+ 
+        score.style.transition = "color 1s";
+ 
+        score.style.color = "black";
+ 
+        gamecontainer.style.transition = "background-color 1s";
+ 
+        gamecontainer.style.backgroundColor = "black";
+ 
+        gameCanvas.style.transition = "background-color 1s";
+ 
+        gameCanvas.style.backgroundColor = "black";
+ 
     } else {
-
+ 
         minhaDiv.style.transition = "background-color 1s";
-
+ 
         minhaDiv.style.backgroundColor = "black";
-
+ 
+        score.style.transition = "color 1s";
+ 
+        score.style.color = "white";
+ 
+        gamecontainer.style.transition = "background-color 1s";
+ 
+        gamecontainer.style.backgroundColor = "white";
+ 
+        gameCanvas.style.transition = "background-color 1s";
+ 
+        gameCanvas.style.backgroundColor = "white";
+ 
     }
-
+ 
 }
 
 
@@ -59,35 +87,43 @@ async function AdicionarCadastro() {
     if (nomeCadastro === '' || nickname === '' || emailCadastro === '' || senhaCadastro === '' || telCadastro === '') {
         alert("Coloque todas as suas informações")
     } else {
-        try {
-            fetch('http://localhost:5011/api/Cadastro/Cadastro', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    nomeCadastro: nomeCadastro,
-                    nickname: nickname,
-                    emailCadastro: emailCadastro,
-                    senhaCadastro: senhaCadastro,
-                    telCadastro: telCadastro
+        const email = document.getElementById('emailCadastro').value;     
+        if (!email.includes('@')) {      
+             alert('coloca @ no email.');       
+             e.preventDefault();
+        }else{
+            try {
+                fetch('http://localhost:5011/api/Cadastro/Cadastro', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        nomeCadastro: nomeCadastro,
+                        nickname: nickname,
+                        emailCadastro: emailCadastro,
+                        senhaCadastro: senhaCadastro,
+                        telCadastro: telCadastro
+                    })
+                }).then(response => {
+    
+                    if (response.status === 401) {
+                        alert("Email ou Nickname ja existe");
+    
+                    } else if (response.status === 201) {
+                        
+                        CriarRegistro(nickname);
+                        // redirecionarJogo();
+                    }
                 })
-            }).then(response => {
-
-                if (response.status === 401) {
-                    alert("Email ou Nickname ja existe");
-
-                } else if (response.status === 201) {
-                    CriarRegistro(nickname);
-                    // redirecionarJogo();
-                }
-            })
-        } catch (error) {
-
-            console.error('Erro ao cadastrar:', error);
+            } catch (error) {
+    
+                console.error('Erro ao cadastrar:', error);
+            }
+    
         }
-
-    }
+        }
+        
 }
 
 function redirecionarCad() {
@@ -112,6 +148,10 @@ function redirecionarJogoCobra() {
 function redirecionarLogin() {
     console.log("teste")
     window.location.href = ("http://127.0.0.1:5500/index.html");
+}
+function redirecionarRanking() {
+    console.log("teste")
+    window.location.href = ("http://127.0.0.1:5500/ranking.html");
 }
 function redirecionarJogoVelha() {
     window.location.href = ("http://127.0.0.1:5500/JogoDaVelha.html");
@@ -156,6 +196,8 @@ async function EntrarCadastro() {
             localStorage.setItem('cadastroId', cadastroId.toString());
             console.log(cadastroId)
             return redirecionarJogo();
+        }else{
+            alert('Dados Inválidos')
         }
         //})
     } catch (error) {
@@ -260,13 +302,13 @@ async function AddPart(id, cadastroId, qntPartida, qntVitoria, qntDerrota, qntEm
 
         })
         //.then(response => {
-
+            //return console.log('Partida Contabilizada!')
             if (response.status === 200) {
-                return setTimeout(() => alert('Vitoria/Partida/Derrota/Empate, Concedida'), 100);
+                return console.log('Partida Contabilizada!')
             }
        //})
     } catch (error) {
-        console.error('Erro ao cadastrar:', error);
+        setTimeout(() => alert('Erro ao contabilizar está partida, consulte um suporte no email:"suporteRennys@gmail.com"'), 100);
     }
 }
 
@@ -456,8 +498,13 @@ async function MostrarDados() {
         console.log(data)
         console.log(response)
 
-        alert(`Seu Registro de Partida: \n\nPartidas Jogadas: ${data.qntPartida} \nPartidas Vencidas: ${data.qntVitoria} \nPartidas Perdidas: ${data.qntDerrota} \nPartidas Empatadas: ${data.qntEmpate}`)
-
+        showAlert(`
+            <strong>Seu Registro de Partida:</strong><br><br>
+            Partidas Jogadas: ${data.qntPartida}<br>
+            Partidas Vencidas: ${data.qntVitoria}<br>
+            Partidas Perdidas: ${data.qntDerrota}<br>
+            Partidas Empatadas: ${data.qntEmpate}
+          `);
        //const cadastroId = data[0].cadastroId;
         //html.innerHTML = `
         //<p>${data.qntPartida}</p>
@@ -467,13 +514,24 @@ async function MostrarDados() {
     }
 }
 
+function showAlert(message) {
+    document.getElementById('alertContent').innerHTML = message;
+    document.getElementById('customAlert').style.display = 'block';
+    document.getElementById('customAlertOverlay').style.display = 'block';
+  }
+ 
+  // Função para fechar o modal
+  function closeAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+    document.getElementById('customAlertOverlay').style.display = 'none';
+  }
+
 // Jogo Sliding
 document.addEventListener('DOMContentLoaded', () => {
     const puzzleContainer = document.getElementById('puzzle-container');
     let size = 3;
     let tiles = [];
 
-   
     function createTiles() {
         let numbers = [...Array(size * size).keys()];
         do {
@@ -501,7 +559,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
- 
     function isSolvable(numbers) {
         let inversions = 0;
         for (let i = 0; i < numbers.length; i++) {
@@ -528,20 +585,18 @@ document.addEventListener('DOMContentLoaded', () => {
             [tiles[index], tiles[emptyIndex]] = [tiles[emptyIndex], tiles[index]];
             updateTiles();
             if (isSolved()) {
-                setTimeout(() => alert('Congratulations! You solved the puzzle!'), 100);
+                document.getElementById('gameOverScreen').style.display = "flex";
+                // setTimeout(() => alert('Parabéns! você resolveu o puzzle!'), 100);
                 RegistroWin();
-                
             }
         }
     }
-
 
     function updateTiles() {
         puzzleContainer.innerHTML = '';
         tiles.forEach(tile => puzzleContainer.appendChild(tile));
     }
 
-  
     function isSolved() {
         return tiles.every((tile, index) => {
             if (index === tiles.length - 1) return tile.classList.contains('empty');
@@ -549,46 +604,93 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    function resetGame() {
+        tiles = [];
+        puzzleContainer.innerHTML = '';
+        createTiles();
+        document.getElementById('gameOverScreen').style.display = "none";
+    }
+
+    document.getElementById('restartButton1').addEventListener('click', resetGame);
+
     createTiles();
 });
 
 //Jogo Da Cobra
-
+ 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 const scoreDisplay = document.getElementById("score");
 const restartButton = document.getElementById("restartButton");
-
+ 
 const box = 20;
 const canvasSize = 20;
-
+ 
 canvas.width = box * canvasSize;
 canvas.height = box * canvasSize;
-
+ 
 let snake, food, direction, gameOver, score, game;
-
+ 
+let particles = [];
+ 
+function createParticles(x, y) {
+    for (let i = 0; i < 10; i++) { // Gera 10 partículas
+        particles.push({
+            x: x,
+            y: y,
+            size: Math.random() * 5 + 2, // Tamanho aleatório
+            speedX: Math.random() * 2 - 1, // Velocidade aleatória em x
+            speedY: Math.random() * 2 - 1, // Velocidade aleatória em y
+            life: 100 // Vida da partícula
+        });
+    }
+}
+ 
+// Função para atualizar e desenhar partículas
+function drawParticles() {
+    for (let i = 0; i < particles.length; i++) {
+        let p = particles[i];
+        ctx.fillStyle = "red"; // Cor da partícula
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+        ctx.fill();
+ 
+        // Atualiza a posição e a vida da partícula
+        p.x += p.speedX;
+        p.y += p.speedY;
+        p.life--;
+ 
+        // Remove partículas que já morreram
+        if (p.life <= 0) {
+            particles.splice(i, 1);
+            i--; // Decrementa o índice para compensar a remoção
+        }
+    }
+}
+ 
 function initializeGame() {
+    document.getElementById('gameOverScreen').style.display = "none";
     snake = [];
     snake[0] = { x: 10 * box, y: 10 * box };
     snake[1] = { x: 9 * box, y: 10 * box }; // Primeiro segmento do corpo
-
+ 
     food = {
         x: Math.floor(Math.random() * canvasSize) * box,
         y: Math.floor(Math.random() * canvasSize) * box
     };
-
+ 
     direction = null; // Nenhuma direção definida inicialmente
     gameOver = false;
     score = 0;
     scoreDisplay.innerText = "Maçãs: " + score;
-
+ 
     if (game) clearInterval(game);
     game = setInterval(draw, 100);
 }
-
+ 
 document.addEventListener("keydown", setDirection);
 restartButton.addEventListener("click", initializeGame);
-
+ 
 function setDirection(event) {
     if (event.keyCode === 37 && direction !== "RIGHT") {
         direction = "LEFT";
@@ -599,8 +701,19 @@ function setDirection(event) {
     } else if (event.keyCode === 40 && direction !== "UP") {
         direction = "DOWN";
     }
+ 
+    if (event.keyCode === 65 && direction !== "RIGHT") {
+        direction = "LEFT";
+    } else if (event.keyCode === 87 && direction !== "DOWN") {
+        direction = "UP";
+    } else if (event.keyCode === 68 && direction !== "LEFT") {
+        direction = "RIGHT";
+    } else if (event.keyCode === 83 && direction !== "UP") {
+        direction = "DOWN";
+    }
+ 
 }
-
+ 
 function collision(newHead, snake) {
     for (let i = 1; i < snake.length; i++) { // Começa de 1 para evitar colisão com a cabeça
         if (newHead.x === snake[i].x && newHead.y === snake[i].y) {
@@ -609,7 +722,7 @@ function collision(newHead, snake) {
     }
     return false;
 }
-
+ 
 function drawGrid() {
     ctx.strokeStyle = "#ddd";
     for (let i = 0; i < canvas.width; i += box) {
@@ -623,40 +736,88 @@ function drawGrid() {
         ctx.stroke();
     }
 }
-
+ 
+const colorOptions = document.querySelectorAll('.color-option');
+const snakeCanvas = document.getElementById('gameCanvas').getContext('2d'); // Get the 2d drawing context of the canvas
+ 
+let snakeColor = 'green'; // Set the initial snake color
+ 
+colorOptions.forEach(option => {
+  option.addEventListener('click', () => {
+    snakeColor = option.style.backgroundColor; // Update snake color based on clicked option's background color
+  });
+});
+ 
+const colorMap = {
+    red: "darkred",
+    green: "darkgreen",
+    blue: "darkblue",
+    // Adicione mais cores aqui se necessário
+};
+ 
 function draw() {
     if (gameOver) return;
-
+ 
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawGrid();
-
+ 
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawGrid();
+    drawParticles(); // Chama a função de partículas
+ 
     for (let i = 0; i < snake.length; i++) {
         // Desenhar corpo da cobra com preenchimento e borda
-        ctx.fillStyle = "green";
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = colorMap[snakeColor] || "black";        snake.forEach(function(snakePart) {
+        ctx.fillStyle = snakeColor;
         ctx.fillRect(snake[i].x, snake[i].y, box, box);
-
-        ctx.strokeStyle = "darkgreen"; // Cor da borda
+        });
+        ctx.shadowBlur = 0;
+ 
+        ctx.strokeStyle = colorMap[snakeColor]; // Cor da borda
         ctx.lineWidth = 2; // Largura da borda
         ctx.strokeRect(snake[i].x, snake[i].y, box, box);
     }
-
+ 
+    function darkenColor(color) {
+         // Prefixo para escurecer a cor (ajuste conforme necessário)
+    const darkenPrefix = 'dark';
+ 
+    // Verifica se a cor já possui o prefixo "dark"
+    if (color.startsWith(darkenPrefix)) {
+        return color; // Se já estiver escura, retorna a mesma cor
+    }
+ 
+    // Adiciona o prefixo "dark" para escurecer a cor
+    return darkenPrefix + color;
+    }
+ 
+    ctx.shadowBlur = 10;
+    ctx.shadowColor = "#ff0000";
     ctx.fillStyle = "red";
     ctx.fillRect(food.x, food.y, box, box);
-
+    ctx.shadowBlur = 0;
+ 
     let snakeX = snake[0].x;
     let snakeY = snake[0].y;
-
+    const snakeWidth = box; // Assuming snake width is the same as box size
+    let snakeHeight = box; // Set snake height equal to box size
+ 
+    snakeCanvas.fillStyle = snakeColor;  // Set the fill style of the snake to the current snakeColor
+    snakeCanvas.fillRect(snakeX, snakeY, snakeWidth, box); // Use box directly for height
+ 
     if (direction) {
         if (direction === "LEFT") snakeX -= box;
         if (direction === "UP") snakeY -= box;
         if (direction === "RIGHT") snakeX += box;
         if (direction === "DOWN") snakeY += box;
-
+ 
         let newHead = { x: snakeX, y: snakeY };
-
+ 
         if (snakeX === food.x && snakeY === food.y) {
             score++;
             scoreDisplay.innerText = "Maçãs: " + score;
+            createParticles(food.x + box / 2, food.y + box / 2); // Cria partículas na posição da maçã
             food = {
                 x: Math.floor(Math.random() * canvasSize) * box,
                 y: Math.floor(Math.random() * canvasSize) * box
@@ -664,29 +825,23 @@ function draw() {
         } else {
             snake.pop();
         }
-
+ 
         if (
-            snakeX < 0 || snakeY < 0 || 
-            snakeX >= canvas.width || snakeY >= canvas.height || 
+            snakeX < 0 || snakeY < 0 ||
+            snakeX >= canvas.width || snakeY >= canvas.height ||
             collision(newHead, snake)
         ) {
             gameOver = true;
-            setTimeout(() => {
-                alert("Game Over");
-            }, 100);
-            RegistroDerrota()
             clearInterval(game); // Parar o jogo
-            return;
+ 
+            // Exibe a tela de Game Over
+            document.getElementById('gameOverScreen').style.display = "flex";
+            document.getElementById('finalScore').textContent = score;
         }
-
+ 
         snake.unshift(newHead);
     }
 }
-
+ 
 // Inicializa o jogo ao carregar a página
 initializeGame();
-
-
-//Jogo Da Velha
-
-

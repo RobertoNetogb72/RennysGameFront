@@ -7,7 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
   <link rel="stylesheet" href="css/estilos.css">
-
+  <link rel="shortcut icon" href="img/icons8-r-60.png" type="image/x-icon">
   <title>Escolha o Game</title>
 </head>
 
@@ -49,7 +49,7 @@
         </div>
         <div class="card text-white bg-success mb-3" style="max-width: 18rem;">
           <div class="card-header">
-            <img src="img/cobraverde.png" class="fotoescolha">
+            <img src="img/jogoCobra.png" class="fotoescolha">
           </div>
           <div class="card-body">
             <h5 class="card-title">Jogo da Cobrinha</h5>
@@ -58,7 +58,9 @@
           </div>
         </div>
         </div>
+        <button class="ReiniciarJogo" onclick="redirecionarRanking()"><img src="img/ranking.png"></button>
       </div>
+      
       </div>
       <!--<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
         <div class="carousel-inner">
@@ -91,7 +93,11 @@
     </div>
   </main>
 
-
+  <div id="customAlertOverlay"></div>
+  <div id="customAlert">
+    <p id="alertContent"></p>
+    <button onclick="closeAlert()">Fechar</button>
+  </div>
 
 
   <script src="js/script.js"></script>

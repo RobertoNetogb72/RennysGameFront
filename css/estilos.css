@@ -252,21 +252,22 @@ a {
     justify-content: center;
     align-items: center;
     width: 420px;
-    height: 470px; /* Adjusted to accommodate the score display */
-    background-color: #fff;
-    border: 2px solid #000;
+    height: 420px; /* Adjusted to accommodate the score display */
+    background-color: white;
+    border: 2px solid #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 15px;
 }
- 
 h1{
     text-align: center;
     color: #fff;
 }
  
 canvas {
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
     align-items: center;
     display: block;
-    background-color: #00c217;
+    background-color: white;
 }
  
  
@@ -310,3 +311,121 @@ canvas {
 .voltar:active{
     transform: translateX(2px) translateY(-2px);
 }
+
+#score {
+    font-family: 'Press Start 2P', cursive;
+    margin-top: 20px;
+    font-size: 24px;
+    font-weight: bold;
+    color: #fff;
+}
+ 
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+ 
+.game-over-content {
+    text-align: center;
+    color: #fff;
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+}
+ 
+#finalScore {
+    font-size: 24px;
+    color: #46EE57;
+}
+#restartButton1 {
+    background-color: #4CAF50; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    padding: 10px 20px; /* Espaçamento interno */
+    font-size: 18px; /* Tamanho da fonte */
+    font-family: 'Arial', sans-serif; /* Tipo da fonte */
+    border: none; /* Remover borda */
+    border-radius: 5px; /* Arredondar bordas */
+    cursor: pointer; /* Mudar o cursor ao passar sobre o botão */
+    transition: background-color 0.3s ease; /* Animação suave na mudança de cor */
+}
+ 
+#restartButton1:hover {
+    background-color: #45a049; /* Cor ao passar o mouse por cima */
+}
+ 
+#restartButton1:active {
+    background-color: #3e8e41; /* Cor ao clicar */
+}
+
+#customAlert {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 1000;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    width: 300px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+
+  }
+ 
+  /* Fundo escuro */
+  #customAlertOverlay {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+  }
+ 
+  /* Botão de fechar */
+  #customAlert button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    margin: 0 auto;
+  }
+ 
+  #customAlert p {
+    font-size: 22px;
+    color: #333;
+    text-align: center;
+  }
+  .inventory {
+    display: flex;
+    flex-direction: column;
+    gap: 10px; /* Espaçamento entre as opções de cor */
+  }
+ 
+  .color-option {
+    width: 30px;
+    height: 30px;  
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    left: 30px;
+  }
+ 
+  .skin{
+    display: flex;
+    flex-direction: row;
+  }

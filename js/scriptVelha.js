@@ -3,7 +3,6 @@ function redirecionarLobby() {
     window.location.href = ("http://127.0.0.1:5500/indexJogo1.html");
 }
 
-
 async function RegistroPart() {
     
     try {
@@ -31,7 +30,6 @@ async function RegistroPart() {
     }
 }
 
-
 async function AddPart(id, cadastroId, qntPartida, qntVitoria, qntDerrota, qntEmpate) {
     try {
         const qntPartida1 = qntPartida + 1;
@@ -54,14 +52,13 @@ async function AddPart(id, cadastroId, qntPartida, qntVitoria, qntDerrota, qntEm
         //.then(response => {
 
             if (response.status === 200) {
-                return setTimeout(() => alert('Vitoria/Partida/Derrota/Empate, Concedida'), 100);
+                return console.log('Partida Contabilizada!')
             }
        //})
     } catch (error) {
-        console.error('Erro ao cadastrar:', error);
+        setTimeout(() => alert('Erro ao contabilizar está partida, consulte um suporte no email:"suporteRennys@gmail.com"'), 100);
     }
 }
-
 
 async function RegistroWin() {
     
@@ -89,7 +86,6 @@ async function RegistroWin() {
 
     }
 }
-
 
 async function AddWin(id, cadastroId, qntPartida, qntVitoria, qntDerrota, qntEmpate) {
     try {
@@ -121,7 +117,6 @@ async function AddWin(id, cadastroId, qntPartida, qntVitoria, qntDerrota, qntEmp
     }
 }
 
-
 async function RegistroDerrota() {
     
     try {
@@ -148,7 +143,6 @@ async function RegistroDerrota() {
 
     }
 }
-
 
 async function AddDerrota(id, cadastroId, qntPartida, qntVitoria, qntDerrota, qntEmpate) {
     try {
@@ -248,8 +242,13 @@ async function MostrarDados() {
         console.log(data)
         console.log(response)
 
-        alert(`Seu Registro de Partida: \n\nPartidas Jogadas: ${data.qntPartida} \nPartidas Vencidas: ${data.qntVitoria} \nPartidas Perdidas: ${data.qntDerrota} \nPartidas Empatadas: ${data.qntEmpate}`)
-
+        showAlert(`
+            <strong>Seu Registro de Partida:</strong><br><br>
+            Partidas Jogadas: ${data.qntPartida}<br>
+            Partidas Vencidas: ${data.qntVitoria}<br>
+            Partidas Perdidas: ${data.qntDerrota}<br>
+            Partidas Empatadas: ${data.qntEmpate}
+          `);
        //const cadastroId = data[0].cadastroId;
         //html.innerHTML = `
         //<p>${data.qntPartida}</p>
@@ -259,6 +258,17 @@ async function MostrarDados() {
     }
 }
 
+function showAlert(message) {
+    document.getElementById('alertContent').innerHTML = message;
+    document.getElementById('customAlert').style.display = 'block';
+    document.getElementById('customAlertOverlay').style.display = 'block';
+  }
+ 
+  // Função para fechar o modal
+  function closeAlert() {
+    document.getElementById('customAlert').style.display = 'none';
+    document.getElementById('customAlertOverlay').style.display = 'none';
+  }
 
 const board = document.getElementById("board");
 let currentPlayer = "X";
